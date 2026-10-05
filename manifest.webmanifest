@@ -1,0 +1,10 @@
+{
+  "name":"무지개 유니콘 숲",
+  "short_name":"유니콘 숲",
+  "start_url":"./",
+  "display":"standalone",
+  "orientation":"landscape",
+  "background_color":"#bdefff",
+  "theme_color":"#8b5cf6",
+  "icons":[{"src":"assets/icon.png","sizes":"512x512","type":"image/png"}]
+}

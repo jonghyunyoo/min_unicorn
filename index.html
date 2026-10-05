@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#8b5cf6" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>무지개 유니콘 숲</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="apple-touch-icon" href="assets/icon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <noscript><div style="position:fixed;inset:0;z-index:99999;background:#fff;padding:40px;font:700 22px system-ui;text-align:center">이 게임은 JavaScript가 실행되는 웹브라우저가 필요해요.<br><br>ChatGPT 파일 미리보기에서는 버튼이 작동하지 않을 수 있어요. GitHub Pages 같은 웹 주소로 열어 주세요.</div></noscript>
+  <div id="app">
+    <canvas id="game" aria-label="무지개 유니콘 숲 게임 화면"></canvas>
+
+    <section id="titleScreen" class="screen active">
+      <div class="titleCard">
+        <img class="logo" src="assets/logo.png" alt="무지개 유니콘 숲 로고" />
+        <div class="titleButtons">
+          <button id="newGameBtn" class="bigBtn gold">🌟 새 게임</button>
+          <button id="continueBtn" class="bigBtn blue">▶ 이어하기</button>
+        </div>
+        <p class="tiny">자동 저장 · 같은 브라우저에서 이어서 할 수 있어요</p>
+      </div>
+    </section>
+
+    <section id="selectScreen" class="screen">
+      <div class="panel characterPanel">
+        <h1>마법사를 골라 주세요!</h1>
+        <div class="characters">
+          <button class="characterCard" data-gender="boy">
+            <div class="wizard boy"><span class="hat">★</span><span class="face">●</span><span class="shirt"></span><span class="pants"></span></div>
+            <strong>남자</strong>
+          </button>
+          <button class="characterCard" data-gender="girl">
+            <div class="wizard girl"><span class="hat">★</span><span class="face">●</span><span class="shirt"></span><span class="pants"></span></div>
+            <strong>여자</strong>
+          </button>
+        </div>
+        <button id="startSelectedBtn" class="bigBtn purple" disabled>✨ 이 캐릭터로 시작!</button>
+      </div>
+    </section>
+
+    <div id="hud" class="hidden">
+      <div id="magicBar" class="magicBar" aria-label="마법 수집 상태">
+        <div data-magic="plant">🌱</div><div data-magic="water">💧</div><div data-magic="fire">🔥</div><div data-magic="music">♪</div><div data-magic="tech">🔧</div>
+      </div>
+      <div class="topRight">
+        <button id="hintBtn" class="roundBtn">✨<span>길 찾기</span></button>
+        <button id="settingsBtn" class="roundBtn small">⚙️</button>
+      </div>
+      <div id="joystick" class="joystick"><div id="stick"></div></div>
+      <div class="moveModes">
+        <button id="walkBtn" class="modeBtn selected">👣<span>걷기</span></button>
+        <button id="runBtn" class="modeBtn">⚡<span>뛰기</span></button>
+      </div>
+      <button id="enterBtn" class="enterBtn hidden">🚪 들어가기</button>
+      <div id="tutorialBubble" class="tutorial hidden"></div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <section id="interior" class="overlay hidden">
+      <div class="interiorCard">
+        <h2 id="interiorTitle"></h2>
+        <div id="interiorScene" class="interiorScene"></div>
+        <p id="interiorText"></p>
+        <div id="interiorActions" class="actionRow"></div>
+      </div>
+    </section>
+
+    <section id="cutscene" class="overlay hidden cutscene">
+      <div class="sparkles" id="sparkles"></div>
+      <img id="unicornImg" src="assets/unicorn.png" alt="붉은 날개의 아름다운 유니콘" />
+      <div id="cutsceneText" class="cutsceneText"></div>
+    </section>
+
+    <section id="theater" class="overlay hidden theater">
+      <div class="theaterRoom">
+        <h2>🎬 기록 영화관</h2>
+        <canvas id="replay"></canvas>
+        <p>내가 걸어온 길이 계속 반복해서 재생돼요.</p>
+        <button id="exitTheaterBtn" class="bigBtn blue">🚪 영화관 나가기</button>
+      </div>
+    </section>
+
+    <section id="settings" class="overlay hidden">
+      <div class="settingsCard">
+        <h2>⚙️ 설정</h2>
+        <label><span>🎵 배경음악</span><input id="musicToggle" type="checkbox" checked /></label>
+        <label><span>🔔 효과음</span><input id="sfxToggle" type="checkbox" checked /></label>
+        <button id="homeBtn" class="bigBtn gold">🏠 처음 화면</button>
+        <button id="closeSettingsBtn" class="bigBtn blue">돌아가기</button>
+      </div>
+    </section>
+
+    <section id="confirmNew" class="overlay hidden">
+      <div class="confirmCard">
+        <h2>처음부터 다시 할까요?</h2>
+        <p>지금 저장된 모험은 지워져요.</p>
+        <div class="actionRow">
+          <button id="cancelNewBtn" class="bigBtn blue">아니요</button>
+          <button id="holdNewBtn" class="bigBtn red">2초 동안 눌러 처음부터</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
