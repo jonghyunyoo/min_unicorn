@@ -15,7 +15,8 @@
 <body>
   <noscript><div style="position:fixed;inset:0;z-index:99999;background:#fff;padding:40px;font:700 22px system-ui;text-align:center">이 게임은 JavaScript가 실행되는 웹브라우저가 필요해요.<br><br>ChatGPT 파일 미리보기에서는 버튼이 작동하지 않을 수 있어요. GitHub Pages 같은 웹 주소로 열어 주세요.</div></noscript>
   <div id="app">
-    <canvas id="game" aria-label="무지개 유니콘 숲 게임 화면"></canvas>
+    <canvas id="game" aria-label="무지개 유니콘 숲 3D 게임 화면"></canvas>
+    <div id="bootMessage">✨ 3D 마법 숲을 준비하고 있어요...</div>
 
     <section id="titleScreen" class="screen active">
       <div class="titleCard">
@@ -109,6 +110,6 @@
       </div>
     </section>
   </div>
-  <script src="game.js"></script>
+  <script type="module" src="game3.js"></script>
 </body>
 </html>
